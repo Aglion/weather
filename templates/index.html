@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка погодных условий</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h2>Введите начальный и конечный города</h2>
+        <form action="{{ url_for('check_weather_route') }}" method="POST">
+            <div class="form-group">
+                <label for="start_city">Начальный город:</label>
+                <input type="text" name="start_city" id="start_city" required placeholder="Напр. Москва">
+            </div>
+            <div class="form-group">
+                <label for="end_city">Конечный город:</label>
+                <input type="text" name="end_city" id="end_city" required placeholder="Напр. Санкт-Петербург">
+            </div>
+            <button type="submit" class="btn">Проверить погоду</button>
+        </form>
+    </div>
+</body>
+</html>

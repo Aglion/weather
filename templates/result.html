@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты проверки</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        html{
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        <h2>Результаты проверки погодных условий</h2>
+        <h3>Начальный город: {{ start_weather['city'] }}</h3>
+        <p>{{ start_weather['weather_text'] }}</p>
+        <p>Температура: {{ start_weather['temperature'] }}°C</p>
+        <p>Влажность: {{ start_weather['humidity'] }}%</p>
+        <p>Скорость ветра: {{ start_weather['wind_speed'] }} км/ч</p>
+        <p>Вероятность осадков: {{ start_weather['precipitation_probability'] }}%</p>
+        {% if start_conditions %}
+            <p class="warning">Неблагоприятные условия по параметрам: {{ start_conditions|join(', ') }}</p>
+        {% else %}
+            <p class="success">Погодные условия считаются хорошими!</p>
+        {% endif %}
+
+        <h3>Конечный город: {{ end_weather['city'] }}</h3>
+        <p>{{ end_weather['weather_text'] }}</p>
+        <p>Температура: {{ end_weather['temperature'] }}°C</p>
+        <p>Влажность: {{ end_weather['humidity'] }}%</p>
+        <p>Скорость ветра: {{ end_weather['wind_speed'] }} км/ч</p>
+        <p>Вероятность осадков: {{ end_weather['precipitation_probability'] }}%</p>
+        {% if end_conditions %}
+            <p class="warning">Неблагоприятные условия по параметрам: {{ end_conditions|join(', ') }}</p>
+        {% else %}
+            <p class="success">Погодные условия считаются хорошими!</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}">Назад к форме</a>
+    </div>
+</body>
+</html>
